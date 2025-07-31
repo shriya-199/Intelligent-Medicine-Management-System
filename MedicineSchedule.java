@@ -43,6 +43,9 @@ public class MedicineSchedule {
      * Adds 10 minutes to a given time in "HH:mm" format.
      */
     private static String addTenMinutes(String time) {
+        if (time == null || !time.matches("^([01]?\\d|2[0-3]):[0-5]\\d$")) {
+            throw new IllegalArgumentException("Invalid time format. Use HH:mm.");
+        }
         String[] parts = time.split(":");
         int hours = Integer.parseInt(parts[0]);
         int minutes = Integer.parseInt(parts[1]);

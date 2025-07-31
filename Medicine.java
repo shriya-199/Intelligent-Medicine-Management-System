@@ -256,8 +256,8 @@ public static void updateMedicines(Scanner sc) {
                 String oldMedicineName = sc.nextLine().trim().toLowerCase();
 
                 if (!medicines.contains(oldMedicineName)) {
-                    System.out.println(GREEN + "No matching medicine found. Update successful." + RESET);
-                    break;
+                    System.out.println(RED + "No matching medicine found." + RESET);
+                    continue; // Ask for the medicine name again
                 }
                 medicines.remove(oldMedicineName);
                 String dateDeleted = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
