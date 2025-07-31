@@ -1,6 +1,6 @@
-# Medicine Management System (Java Console Application)
+# Intelligent Medicine Management System (Java Console Application)
 
-The Medicine Management System is a robust, modular, and console-based Java application developed to manage personal or patient-centric medication schedules. This system offers functionality to record, update, monitor, and remind users about their daily medicines in a structured and conflict-free manner. It provides a real-world solution tailored for patients, caregivers, and healthcare support systems that need lightweight, portable, and reliable medicine tracking without the overhead of a complex GUI or cloud infrastructure.
+The Inteligent Medicine Management System is a robust, modular, and console-based Java application developed to manage personal or patient-centric medication schedules. This system offers functionality to record, update, monitor, and remind users about their daily medicines in a structured and conflict-free manner. It provides a real-world solution tailored for patients, caregivers, and healthcare support systems that need lightweight, portable, and reliable medicine tracking without the overhead of a complex GUI or cloud infrastructure.
 
 ---
 
