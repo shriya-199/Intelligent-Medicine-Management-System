@@ -35,7 +35,7 @@ public class Medicine {
      * Displays a menu and handles user input for various operations.
      */
     public static void main(String[] args) {
-        System.out.println("Welcome to the Medicine Management System");
+        System.out.println("Welcome to Intelligent Medicine Management System");
         System.out.println("You can manage your medicines, view schedules, and track history.");
         // Background thread for reminders
     new Thread(() -> {
