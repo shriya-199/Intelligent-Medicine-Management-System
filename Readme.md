@@ -122,410 +122,173 @@ Allows users to input:
 - Any IDE or terminal that supports Java console applications
 
 ### Sample Workflow
-┌───────────────────────────────────────────┐
-│     Start: Medicine Management System     │
-└───────────────────────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────────┐
-│ Display welcome message & instructions      │
-│ Start reminder thread (loop every 60 secs) │
-└─────────────────────────────────────────────┘
-                 │
-                 ▼
-      ┌────────────────────────┐
-      │    Show Main Menu:     │
-      └────────────────────────┘
-                 │
-                 ▼
-┌────────────────────────────────────────────┐
-│ User Input (1–8):                          │
-│   1: Add medicine                          │
-│   2: View medicines                        │
-│   3: Update medicine                       │
-│   4: Delete medicine                       │
-│   5: View history                          │
-│   6: Update schedule                       │
-│   7: View schedule                         │
-│   8: Exit                                  │
-└────────────────────────────────────────────┘
-                 │
-   ┌─────────────┼─────────────────────────────────────────────────────┐
-   │             │             │            │             │            │
-   ▼             ▼             ▼            ▼             ▼            ▼
-[Add]        [View]       [Update]     [Delete]      [View Hist]   [Update Sched]
- Medicine   Medicines     Medicine     Medicine      All Events     for Medicine
-                 │
-                 ▼
-           [View Schedule]
-                 │
-                 ▼
-             [Exit System]
-                 │
-                 ▼
-       ┌─────────────────────┐
-       │   Exit Program      │
-       └─────────────────────┘
+flowchart TD
+    A0([Start: Medicine Management System])
+    A1[Display welcome message & instructions\nStart reminder thread (loop every 60 secs)]
+    A2[Show Main Menu]
+    A3[User Input (1–8)]
+    
+    subgraph Main Options
+        B1[1: Add medicine]
+        B2[2: View medicines]
+        B3[3: Update medicine]
+        B4[4: Delete medicine]
+        B5[5: View history]
+        B6[6: Update schedule]
+        B7[7: View schedule]
+        B8[8: Exit]
+    end
 
-AddMedicine:
-┌──────────────────────────────────────────────┐
-│ Start addMedicines(Scanner sc)              │
-└──────────────────────────────────────────────┘
-                    │
-                    ▼
-   ┌────────────────────────────────────────┐
-   │ Prompt: "Enter number of medicines"   │
-   └────────────────────────────────────────┘
-                    │
-                    ▼
-      ┌────────────────────────────┐
-      │ Try reading integer input  │
-      └────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
-        ▼                       ▼
-┌───────────────┐     ┌────────────────────────────┐
-│ Input valid?  │ No  │ Print "Invalid input"      │
-└───────────────┘     │ Clear scanner buffer       │
-        │             │ Return from method         │
-        ▼             └────────────────────────────┘
-  Yes   │
-        ▼
-┌────────────────────────────────────────────┐
-│ Check if numberOfMedicines > 0            │
-└────────────────────────────────────────────┘
-        │
-    ┌───▼────────────┐
-    │ No: Print error│
-    │ & return       │
-    └────────────────┘
-        │
-    Yes ▼
-┌────────────────────────────────────────────┐
-│ Loop i = 1 to numberOfMedicines            │
-│ Prompt for medicine name                   │
-└────────────────────────────────────────────┘
-                    │
-                    ▼
-     ┌────────────────────────────────────┐
-     │ Validate name is not null/empty    │
-     └────────────────────────────────────┘
-                    │
-                    ▼
-     ┌────────────────────────────────────┐
-     │ Check if medicine already exists   │
-     └────────────────────────────────────┘
-                    │
-         ┌──────────┼─────────────┐
-         │ Yes                     │ No
-         ▼                         ▼
-┌──────────────────────────────┐ ┌──────────────────────────────┐
-│ Prompt: Medicine exists      │ │ Add to medicines list        │
-│ Ask: "Skip this medicine?"   │ │ Add entry to history         │
-└──────────────────────────────┘ │ Prompt for schedule           │
-         │                        │ Store schedule in Map        │
-         ▼                        │ Print success messages       │
-┌──────────────────────────────┐ └──────────────────────────────┘
-│ If YES → skip to next        │
-│ If NO → ask for new name     │
-│ Loop until unique name       │
-└──────────────────────────────┘
-                    │
-                    ▼
-      (Repeat loop until all medicines processed)
-                    │
-                    ▼
-        ┌──────────────────────┐
-        │ End addMedicines()   │
-        └──────────────────────┘
+    A0 --> A1 --> A2 --> A3
+    A3 --> B1 --> AddStart
+    A3 --> B2 --> ViewStart
+    A3 --> B3 --> UpdateStart
+    A3 --> B4 --> DeleteStart
+    A3 --> B5 --> HistStart
+    A3 --> B6 --> UpdateSchedStart
+    A3 --> B7 --> ViewSchedStart
+    A3 --> B8 --> ExitSystem
 
+%% ------------------ Add Medicine ------------------
+    subgraph Add Medicine
+        AddStart[Start addMedicines()]
+        AddPrompt[Prompt: Enter number of medicines]
+        AddTry[Try reading integer input]
+        AddValid{Input valid?}
+        AddInvalid[Print "Invalid input"\nClear buffer\nReturn]
+        AddNumCheck{numberOfMedicines > 0?}
+        AddErr[Print error & return]
+        AddLoop[Loop i = 1 to numberOfMedicines]
+        AddName[Prompt for medicine name]
+        AddNameValid[Validate name not null/empty]
+        AddExistCheck[Check if medicine exists]
+        AddExists[Prompt: exists\nAsk: Skip?]
+        AddSkip{If YES → skip\nIf NO → ask new name}
+        AddNew[Add to list, add to history, prompt for schedule\nStore schedule\nPrint success]
+    end
 
-updateMedicine:
-┌────────────────────────────────────────────┐
-│ Start updateMedicines(Scanner sc)         │
-└────────────────────────────────────────────┘
-                    │
-                    ▼
-    ┌────────────────────────────────────┐
-    │ Prompt: Choose 1 (Replace) or 2    │
-    │ (Add new while keeping old)        │
-    └────────────────────────────────────┘
-                    │
-        ┌───────────┼─────────────┐
-        ▼                         ▼
- ┌─────────────┐         ┌────────────────────────────┐
- │ Choice = 1  │         │ Choice = 2                 │
- │ Replace med │         │ Add new while keeping      │
- └─────────────┘         └────────────────────────────┘
-        │                         │
-        ▼                         ▼
-┌──────────────────────────┐  ┌────────────────────────────┐
-│ Loop: continueUpdating?  │  │ Prompt for new medicine    │
-└──────────────────────────┘  │ Validate name (not empty,  │
-        │                    │ not duplicate)              │
-        ▼                    └────────────────────────────┘
-┌─────────────────────────────┐        │
-│ Prompt: medicine to remove  │        ▼
-│ Check if it exists          │  ┌───────────────────────────────┐
-└─────────────────────────────┘  │ Add new medicine to list       │
-        │                         │ Add to history (added)         │
-        ▼                         │ Prompt for schedule input      │
-┌───────────────────────────────┐│ Save to schedule map            │
-│ If not found → print msg &    ││ Print success messages          │
-│ break                         │└────────────────────────────────┘
-└───────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────┐
-│ Remove old medicine from list      │
-│ Add to history (deleted)           │
-└────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────┐
-│ Prompt for new medicine name       │
-│ Validate:                          │
-│ - not empty                        │
-│ - not same as old                 │
-│ - not duplicate                   │
-└────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────┐
-│ Add new medicine to list           │
-│ Add to history (added, updated)    │
-└────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────┐
-│ Prompt for schedule for new med    │
-│ Save to schedule map               │
-│ Print success messages             │
-└────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────┐
-│ Ask: Update another? (yes/no)      │
-│ If no → Exit update mode           │
-└────────────────────────────────────┘
-                    │
-                    ▼
-          ┌──────────────────────┐
-          │ End updateMedicines  │
-          └──────────────────────┘
+    AddStart --> AddPrompt --> AddTry --> AddValid
+    AddValid -->|No| AddInvalid
+    AddValid -->|Yes| AddNumCheck
+    AddNumCheck -->|No| AddErr
+    AddNumCheck -->|Yes| AddLoop
+    AddLoop --> AddName --> AddNameValid --> AddExistCheck
+    AddExistCheck -->|Yes| AddExists --> AddSkip --> AddLoop
+    AddExistCheck -->|No| AddNew --> AddLoop
 
+%% ------------------ Update Medicine ------------------
+    subgraph Update Medicine
+        UpdateStart[Start updateMedicines()]
+        UpdateChoice[Prompt: Choose 1 (Replace) or 2 (Add new)]
+        UpdateChoice1[Choice = 1: Replace med]
+        UpdateChoice2[Choice = 2: Add new]
+        UpdateRemove[Prompt: med to remove\nCheck exists]
+        UpdateNotFound[Print not found & break]
+        UpdateDel[Remove old med, add to history]
+        UpdateNewName[Prompt new name\nValidate: not empty, not same, not dup]
+        UpdateSave[Add new, add to history, prompt for schedule\nSave to map\nPrint success]
+        UpdateAskMore[Ask update another? yes/no]
+    end
 
-updateScheduleForExistingMedicine
+    UpdateStart --> UpdateChoice --> UpdateChoice1 --> UpdateRemove
+    UpdateRemove -->|Not found| UpdateNotFound
+    UpdateRemove -->|Exists| UpdateDel --> UpdateNewName --> UpdateSave --> UpdateAskMore
+    UpdateChoice --> UpdateChoice2 --> UpdateSave
 
-┌────────────────────────────────────────────┐
-│ Start updateScheduleForExistingMedicine    │
-└────────────────────────────────────────────┘
-                    │
-                    ▼
-┌────────────────────────────────────────────┐
-│ Prompt: Enter medicine name                │
-└────────────────────────────────────────────┘
-                    │
-        ┌───────────┴────────────┐
-        ▼                        ▼
-┌─────────────────────────┐  ┌────────────────────────────┐
-│ Medicine found?         │  │ Print: "Medicine not found"│
-│ Yes                     │  │ Return                     │
-└─────────────────────────┘  └────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────────────┐
-│ Prompt for new schedule                    │
-│ Use createScheduleFromInput()             │
-│ Update schedule in medicineSchedules Map   │
-└────────────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────────────┐
-│ Add update entry in medicineHistories      │
-│ Print success message                      │
-└────────────────────────────────────────────┘
-        │
-        ▼
-        ┌──────────────────────┐
-        │ End Function         │
-        └──────────────────────┘
+%% ------------------ Update Schedule ------------------
+    subgraph Update Schedule
+        UpdateSchedStart[Start updateScheduleForExistingMedicine()]
+        USPrompt[Prompt: Enter medicine name]
+        USFound{Medicine found?}
+        USNotFound[Print: Not found\nReturn]
+        USCreate[Prompt for new schedule\nUse createScheduleFromInput()]
+        USUpdate[Update schedule map\nAdd to history\nPrint success]
+    end
 
-deleteMedicine
+    UpdateSchedStart --> USPrompt --> USFound
+    USFound -->|No| USNotFound
+    USFound -->|Yes| USCreate --> USUpdate
 
-┌───────────────────────────────────────┐
-│ Start deleteMedicines(Scanner sc)     │
-└───────────────────────────────────────┘
-                    │
-                    ▼
-┌────────────────────────────────────────────┐
-│ Prompt: Enter medicine name to delete      │
-└────────────────────────────────────────────┘
-                    │
-        ┌───────────┴────────────┐
-        ▼                        ▼
-┌────────────────────────────┐  ┌──────────────────────────────┐
-│ Medicine exists in list?   │  │ Print "Medicine not found"   │
-│ Yes                        │  │ Return                       │
-└────────────────────────────┘  └──────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────────────┐
-│ Remove medicine from list                  │
-│ Add deletion to medicineHistories          │
-│ Print success message                      │
-└────────────────────────────────────────────┘
-        │
-        ▼
-        ┌──────────────────────┐
-        │ End Function         │
-        └──────────────────────┘
+%% ------------------ Delete Medicine ------------------
+    subgraph Delete Medicine
+        DeleteStart[Start deleteMedicines()]
+        DelPrompt[Prompt: Enter medicine name]
+        DelCheck{Medicine exists?}
+        DelNotFound[Print: Not found\nReturn]
+        DelRemove[Remove from list, add to history\nPrint success]
+    end
 
-viewMedicineHistory
+    DeleteStart --> DelPrompt --> DelCheck
+    DelCheck -->|No| DelNotFound
+    DelCheck -->|Yes| DelRemove
 
-┌──────────────────────────────────────┐
-│ Start viewMedicineHistory()          │
-└──────────────────────────────────────┘
-                    │
-                    ▼
-┌────────────────────────────────────────────┐
-│ Check if medicineHistories is empty        │
-└────────────────────────────────────────────┘
-        ┌────────────┴────────────┐
-        ▼                         ▼
-┌───────────────────────────┐ ┌────────────────────────────────┐
-│ Print: "No history found" │ │ Loop through history entries:   │
-│ Return                    │ │  - Print Added / Updated /      │
-└───────────────────────────┘ │    Deleted with timestamp       │
-                              └────────────────────────────────┘
-                                          │
-                                          ▼
-                         ┌────────────────────────────────┐
-                         │ Print all current medicines    │
-                         │ If empty, show "No medicines"  │
-                         └────────────────────────────────┘
-                                          │
-                                          ▼
-                             ┌──────────────────────┐
-                             │ End Function         │
-                             └──────────────────────┘
+%% ------------------ View History ------------------
+    subgraph View History
+        HistStart[Start viewMedicineHistory()]
+        HistCheck{History empty?}
+        HistNone[Print: No history\nReturn]
+        HistLoop[Loop: print history entries]
+        HistPrint[Print all current medicines or "No medicines"]
+    end
 
-viewMedicineSchedule
+    HistStart --> HistCheck
+    HistCheck -->|Yes| HistNone
+    HistCheck -->|No| HistLoop --> HistPrint
 
-┌──────────────────────────────────────────┐
-│ Start viewMedicineSchedule()             │
-└──────────────────────────────────────────┘
-                    │
-                    ▼
-  ┌────────────────────────────────────┐
-  │ Prompt: "Enter the name of the     │
-  │ medicine to view schedule:"        │
-  └────────────────────────────────────┘
-                    │
-                    ▼
-  ┌────────────────────────────────────┐
-  │ Read input from user               │
-  │ Convert to lowercase & trim input │
-  └────────────────────────────────────┘
-                    │
-                    ▼
-  ┌────────────────────────────────────┐
-  │ Look up medicineSchedules map      │
-  │ using lowercase medicine name      │
-  └────────────────────────────────────┘
-                    │
-                    ▼
-         ┌──────────┴───────────┐
-         ▼                      ▼
-  Found Schedule?           Schedule Not Found
-         │                      │
-         ▼                      ▼
-┌────────────────────┐  ┌────────────────────────────────┐
-│ Print: "Schedule for │  │ Print: "No schedule found for  │
-│ [medicineName]"      │  │ [medicineName]" (in RED)       │
-└────────────────────┘  └────────────────────────────────┘
-         │                      │
-         ▼                      ▼
-┌────────────────────┐      ┌────────────┐
-│ Print schedule obj  │      │ Return     │
-└────────────────────┘      └────────────┘
-         │
-         ▼
-   ┌────────────┐
-   │ Return     │
-   └────────────┘
+%% ------------------ View Schedule ------------------
+    subgraph View Schedule
+        ViewSchedStart[Start viewMedicineSchedule()]
+        VSInput[Prompt: Enter medicine name]
+        VSRead[Read & clean input]
+        VSLookup[Lookup in schedule map]
+        VSSchedFound{Schedule found?}
+        VSFound[Print: "Schedule for [name]"]
+        VSShow[Print schedule]
+        VSNotFound[Print: Not found\nReturn]
+    end
+
+    ViewSchedStart --> VSInput --> VSRead --> VSLookup --> VSSchedFound
+    VSSchedFound -->|Yes| VSFound --> VSShow
+    VSSchedFound -->|No| VSNotFound
+
+%% ------------------ Exit ------------------
+    subgraph Exit
+        ExitSystem[Exit Program]
+    end
+
 
 MedicineSchedule 
+flowchart TD
+    A[Start] --> B[Create Schedule From Input]
 
-[Start]
-   |
-   v
-[Create Schedule From Input]
-   |
-   |--> Ask "Enter number of doses per day"
-   |         |
-   |         v
-   |    Validate (must be > 0)
-   |
-   |--> Ask "Enter number of days"
-   |         |
-   |         v
-   |    Validate (must be > 0)
-   |
-   |--> For each day:
-   |         Ask day name (e.g., Monday)
-   |         Add to 'days' list
-   |
-   |--> For each dose:
-             |
-             v
-        Ask time in HH:mm
-             |
-             v
-        Validate format ✓
-             |
-             v
-        For each entered day:
-           |
-           v
-    Generate slot as "Day-Time"
-           |
-           v
-    Check if slot exists in global existingDayTimeSlots
-           |
-           v
-    If conflict:
-       Print "Conflict detected"
-       Adjust time +10 mins repeatedly until free
-       Show adjusted time
-           |
-           v
-    Add new slot to existingDayTimeSlots
-           |
-           v
-    Add final time to doseTimes list
-   |
-   v
-[Return new MedicineSchedule object with numberOfDoses, doseTimes, days]
-   |
-   v
-[Check & Notify Dose (Runtime)]
-   |
-   |--> Get current time (HH:mm) and day (e.g., MONDAY)
-   |
-   |--> For each scheduled day:
-              |
-              v
-         If matches today's day:
-            For each doseTime:
-               |
-               v
-          If matches current time:
-              --> Print Reminder: "It's time to take your medicine: <name> at <doseTime>"
-   |
-   v
-[End]
+    B --> B1[Ask "Enter number of doses per day"]
+    B1 --> B2[Validate (must be > 0)]
 
+    B2 --> C1[Ask "Enter number of days"]
+    C1 --> C2[Validate (must be > 0)]
+
+    C2 --> D[For each day:\n Ask day name (e.g., Monday)\n Add to 'days' list]
+
+    D --> E[For each dose:\n Ask time in HH:mm\n Validate format ✓]
+
+    E --> F[For each entered day:\n Generate slot as "Day-Time"]
+    F --> G[Check if slot exists in existingDayTimeSlots]
+
+    G -->|Conflict| H1[Print "Conflict detected"\n Adjust time +10 mins repeatedly until free\n Show adjusted time]
+    H1 --> H2[Add new slot to existingDayTimeSlots]
+    G -->|No conflict| H2
+
+    H2 --> I[Add final time to doseTimes list]
+
+    I --> J[Return new MedicineSchedule object\n(numberOfDoses, doseTimes, days)]
+
+    J --> K[Check & Notify Dose (Runtime)]
+    K --> K1[Get current time (HH:mm) and day (e.g., MONDAY)]
+
+    K1 --> K2[For each scheduled day:\n If matches today's day ➜ check each doseTime]
+    K2 --> K3[If doseTime == current time ➜ Print Reminder:\n"It's time to take your medicine: <name> at <doseTime>"]
+
+    K3 --> Z[End]
 
 
 
