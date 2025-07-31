@@ -141,40 +141,6 @@ Please enter the names of the medicines:
 Medicine 1: Paracetamol
 Medicine paracetamol added successfully.
 Enter schedule details for paracetamol:
-Enter number of doses per day: 2
-Enter number of days to take the medicine: 2
-Enter day 1 (e.g., Monday): Monday
-Enter day 2 (e.g., Monday): Wednesday
-Enter time for dose 1 (HH:mm): 08:00
-Enter time for dose 2 (HH:mm): 19:00
-Schedule for paracetamol added successfully.
-Medicine 2: sprin
-Medicine sprin added successfully.
-Enter schedule details for sprin:
-Enter number of doses per day: 1Exception in thread "main" java.util.NoSuchElementException: No line found
-        at java.base/java.util.Scanner.nextLine(Scanner.java:1677)
-        at MedicineSchedule.createScheduleFromInput(MedicineSchedule.java:70)
-        at Medicine.addMedicines(Medicine.java:197)
-PS C:\Users\hp\OneDrive\Desktop\Projects\DailyDose>  c:; cd 'c:\Users\hp\OneDrive\Desktop\Projects\DailyDose'; & 'C:\Program Files\Java\jdk-23\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\hp\AppData\Roaming\Code\User\workspaceStorage\5254cf5660f4f837f313b347c5ebff6d\redhat.java\jdt_ws\DailyDose_668154b7\bin' 'Medicine' 
-Welcome to the Medicine Management System
-You can manage your medicines, view schedules, and track history.
-==========================================================
-Please follow the prompts to manage your medicines.
-==========================================================
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 1
-Enter the number of medicines to add: 4
-Please enter the names of the medicines:
-Medicine 1: Paracetamol
-Medicine paracetamol added successfully.
-Enter schedule details for paracetamol:
 Enter number of doses per day: 1
 Enter number of days to take the medicine: 2
 Enter day 1 (e.g., Monday): Monday
@@ -274,82 +240,6 @@ Enter 5 to view medicine history
 Enter 6 to update schedule for an existing medicine
 Enter 7 to view the schedule of a medicine
 Enter 8 to exit the system
-Your choice: 2
-List of Medicines:
-- vomin
-- ibuprofen
-- acetaminophen
-- lasmiditan
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 3
-What do you want to do?
-Choose 1 for 'Remove and Add' or 2 for 'Edit while keeping others':
-Your choice: 2
-You chose to add a new medicine while keeping others.
-Enter the new medicine name: Dihydroergotamine
-Medicine dihydroergotamine added successfully.
-Enter schedule details for dihydroergotamine:
-Enter number of doses per day: 1
-Enter number of days to take the medicine: 1
-Enter day 1 (e.g., Monday): Saturday
-Enter time for dose 1 (HH:mm): 07:50
-Schedule for dihydroergotamine added successfully.
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 2
-List of Medicines:
-- vomin
-- ibuprofen
-- acetaminophen
-- lasmiditan
-- dihydroergotamine
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 4
-Enter the name of the medicine to delete: Dolo
-Medicine dolo not found.
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 2
-List of Medicines:
-- vomin
-- ibuprofen
-- acetaminophen
-- lasmiditan
-- dihydroergotamine
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
 Your choice: 5
 Medicine History:
 - paracetamol [Added on 2025-07-31 22:36:27]
@@ -369,35 +259,6 @@ Current Medicines:
 - acetaminophen
 - lasmiditan
 - dihydroergotamine
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 6
-Enter the name of the medicine to update schedule: vomin
-Enter new schedule details for vomin:
-Enter number of doses per day: 1
-Enter number of days to take the medicine: 1
-Enter day 1 (e.g., Monday): Monday
-Enter time for dose 1 (HH:mm): 10:00
-Schedule for vomin updated successfully.
-Schedule for vomin updated successfully.
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 7
-Enter the name of the medicine to view schedule: lasmiditan
-Schedule for lasmiditan:
-Schedule {Doses per day = 3, Existing Slots = [Monday-08:00, Tuesday-08:00, Monday-08:10, Monday-16:00, Sunday-12:00, Sunday-18:00, Monday-09:00, Tuesday-09:00, Wednesday-09:00, Friday-15:00, Sunday-15:00, Monday-09:30, Tuesday-09:30, Monday-14:37, Tuesday-14:37, Monday-22:45, Tuesday-22:45, Saturday-07:50, Monday-10:00]}
 Enter 1 to add medicines
 Enter 2 to view medicines
 Enter 3 to update medicines
