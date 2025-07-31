@@ -122,153 +122,413 @@ Allows users to input:
 - Any IDE or terminal that supports Java console applications
 
 ### Sample Workflow
-Welcome to the Medicine Management System
-You can manage your medicines, view schedules, and track history.
-==========================================================
-Please follow the prompts to manage your medicines.
-==========================================================
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 1
-Enter the number of medicines to add: 4
-Please enter the names of the medicines:
-Medicine 1: Paracetamol
-Medicine paracetamol added successfully.
-Enter schedule details for paracetamol:
-Enter number of doses per day: 1
-Enter number of days to take the medicine: 2
-Enter day 1 (e.g., Monday): Monday
-Enter day 2 (e.g., Monday): Tuesday
-Enter time for dose 1 (HH:mm): 08:00
-Schedule for paracetamol added successfully.
-Medicine 2: Asprin
-Medicine asprin added successfully.
-Enter schedule details for asprin:
-Enter number of doses per day: 2
-Enter number of days to take the medicine: 1
-Enter day 1 (e.g., Monday): Monday
-Enter time for dose 1 (HH:mm): 08:00
-Conflict on Monday at 08:00
-Adjusted to: 08:10
-Enter time for dose 2 (HH:mm): 16:00
-Schedule for asprin added successfully.
-Medicine 3: Vomin
-Medicine vomin added successfully.
-Enter schedule details for vomin:
-Enter number of doses per day: 2
-Enter number of days to take the medicine: 1
-Enter day 1 (e.g., Monday): Sunday
-Enter time for dose 1 (HH:mm): 12:00
-Enter time for dose 2 (HH:mm): 18:00
-Schedule for vomin added successfully.
-Medicine 4: Ibuprofen
-Medicine ibuprofen added successfully.
-Enter schedule details for ibuprofen:
-Enter number of doses per day: 1
-Enter number of days to take the medicine: 3
-Enter day 1 (e.g., Monday): Monday
-Enter day 2 (e.g., Monday): Tuesday
-Enter day 3 (e.g., Monday): Wednesday
-Enter time for dose 1 (HH:mm): 09:00   
-Schedule for ibuprofen added successfully.
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 2
-List of Medicines:
-- paracetamol
-- asprin
-- vomin
-- ibuprofen
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 3
-What do you want to do?
-Choose 1 for 'Remove and Add' or 2 for 'Edit while keeping others':
-Your choice: 1
-You chose to remove a medicine and add a new one.
-Enter the name of the medicine to remove: paracetamol
-Enter the new name for the medicine: Acetaminophen
-Medicine updated successfully from paracetamol to acetaminophen.
-Enter schedule details for acetaminophen:
-Enter number of doses per day: 1
-Enter number of days to take the medicine: 2
-Enter day 1 (e.g., Monday): Friday
-Enter day 2 (e.g., Monday): Sunday
-Enter time for dose 1 (HH:mm): 15:00
-Schedule for acetaminophen added successfully.
-Do you want to update another medicine? (yes/no): yes
-You chose to remove a medicine and add a new one.
-Enter the name of the medicine to remove: Asprin
-Enter the new name for the medicine: Lasmiditan
-Medicine updated successfully from asprin to lasmiditan.
-Enter schedule details for lasmiditan:
-Enter number of doses per day: 3
-Enter number of days to take the medicine: 2
-Enter day 1 (e.g., Monday): Monday
-Enter day 2 (e.g., Monday): Tuesday
-Enter time for dose 1 (HH:mm): Friday
-Invalid time format. Use HH:mm.
-Enter time for dose 1 (HH:mm): 09:30
-Enter time for dose 2 (HH:mm): 14:37
-Enter time for dose 3 (HH:mm): 22:45
-Schedule for lasmiditan added successfully.
-Do you want to update another medicine? (yes/no): no
-Exiting update mode.
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 5
-Medicine History:
-- paracetamol [Added on 2025-07-31 22:36:27]
-- asprin [Added on 2025-07-31 22:36:54]
-- vomin [Added on 2025-07-31 22:37:40]
-- ibuprofen [Added on 2025-07-31 22:39:34]
-- paracetamol [Deleted on 2025-07-31 22:40:57]
-- acetaminophen [Added on 2025-07-31 22:41:37]
-- paracetamol -> acetaminophen [Updated on 2025-07-31 22:41:37]
-- asprin [Deleted on 2025-07-31 22:42:29]
-- lasmiditan [Added on 2025-07-31 22:42:52]
-- asprin -> lasmiditan [Updated on 2025-07-31 22:42:52]
-- dihydroergotamine [Added on 2025-07-31 22:44:32]
-Current Medicines:
-- vomin
-- ibuprofen
-- acetaminophen
-- lasmiditan
-- dihydroergotamine
-Enter 1 to add medicines
-Enter 2 to view medicines
-Enter 3 to update medicines
-Enter 4 to delete medicines
-Enter 5 to view medicine history
-Enter 6 to update schedule for an existing medicine
-Enter 7 to view the schedule of a medicine
-Enter 8 to exit the system
-Your choice: 8
-Exiting the system. Goodbye!
+┌───────────────────────────────────────────┐
+│     Start: Medicine Management System     │
+└───────────────────────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────────────────┐
+│ Display welcome message & instructions      │
+│ Start reminder thread (loop every 60 secs) │
+└─────────────────────────────────────────────┘
+                 │
+                 ▼
+      ┌────────────────────────┐
+      │    Show Main Menu:     │
+      └────────────────────────┘
+                 │
+                 ▼
+┌────────────────────────────────────────────┐
+│ User Input (1–8):                          │
+│   1: Add medicine                          │
+│   2: View medicines                        │
+│   3: Update medicine                       │
+│   4: Delete medicine                       │
+│   5: View history                          │
+│   6: Update schedule                       │
+│   7: View schedule                         │
+│   8: Exit                                  │
+└────────────────────────────────────────────┘
+                 │
+   ┌─────────────┼─────────────────────────────────────────────────────┐
+   │             │             │            │             │            │
+   ▼             ▼             ▼            ▼             ▼            ▼
+[Add]        [View]       [Update]     [Delete]      [View Hist]   [Update Sched]
+ Medicine   Medicines     Medicine     Medicine      All Events     for Medicine
+                 │
+                 ▼
+           [View Schedule]
+                 │
+                 ▼
+             [Exit System]
+                 │
+                 ▼
+       ┌─────────────────────┐
+       │   Exit Program      │
+       └─────────────────────┘
+
+AddMedicine:
+┌──────────────────────────────────────────────┐
+│ Start addMedicines(Scanner sc)              │
+└──────────────────────────────────────────────┘
+                    │
+                    ▼
+   ┌────────────────────────────────────────┐
+   │ Prompt: "Enter number of medicines"   │
+   └────────────────────────────────────────┘
+                    │
+                    ▼
+      ┌────────────────────────────┐
+      │ Try reading integer input  │
+      └────────────────────────────┘
+                    │
+        ┌───────────┴───────────┐
+        ▼                       ▼
+┌───────────────┐     ┌────────────────────────────┐
+│ Input valid?  │ No  │ Print "Invalid input"      │
+└───────────────┘     │ Clear scanner buffer       │
+        │             │ Return from method         │
+        ▼             └────────────────────────────┘
+  Yes   │
+        ▼
+┌────────────────────────────────────────────┐
+│ Check if numberOfMedicines > 0            │
+└────────────────────────────────────────────┘
+        │
+    ┌───▼────────────┐
+    │ No: Print error│
+    │ & return       │
+    └────────────────┘
+        │
+    Yes ▼
+┌────────────────────────────────────────────┐
+│ Loop i = 1 to numberOfMedicines            │
+│ Prompt for medicine name                   │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+     ┌────────────────────────────────────┐
+     │ Validate name is not null/empty    │
+     └────────────────────────────────────┘
+                    │
+                    ▼
+     ┌────────────────────────────────────┐
+     │ Check if medicine already exists   │
+     └────────────────────────────────────┘
+                    │
+         ┌──────────┼─────────────┐
+         │ Yes                     │ No
+         ▼                         ▼
+┌──────────────────────────────┐ ┌──────────────────────────────┐
+│ Prompt: Medicine exists      │ │ Add to medicines list        │
+│ Ask: "Skip this medicine?"   │ │ Add entry to history         │
+└──────────────────────────────┘ │ Prompt for schedule           │
+         │                        │ Store schedule in Map        │
+         ▼                        │ Print success messages       │
+┌──────────────────────────────┐ └──────────────────────────────┘
+│ If YES → skip to next        │
+│ If NO → ask for new name     │
+│ Loop until unique name       │
+└──────────────────────────────┘
+                    │
+                    ▼
+      (Repeat loop until all medicines processed)
+                    │
+                    ▼
+        ┌──────────────────────┐
+        │ End addMedicines()   │
+        └──────────────────────┘
+
+
+updateMedicine:
+┌────────────────────────────────────────────┐
+│ Start updateMedicines(Scanner sc)         │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+    ┌────────────────────────────────────┐
+    │ Prompt: Choose 1 (Replace) or 2    │
+    │ (Add new while keeping old)        │
+    └────────────────────────────────────┘
+                    │
+        ┌───────────┼─────────────┐
+        ▼                         ▼
+ ┌─────────────┐         ┌────────────────────────────┐
+ │ Choice = 1  │         │ Choice = 2                 │
+ │ Replace med │         │ Add new while keeping      │
+ └─────────────┘         └────────────────────────────┘
+        │                         │
+        ▼                         ▼
+┌──────────────────────────┐  ┌────────────────────────────┐
+│ Loop: continueUpdating?  │  │ Prompt for new medicine    │
+└──────────────────────────┘  │ Validate name (not empty,  │
+        │                    │ not duplicate)              │
+        ▼                    └────────────────────────────┘
+┌─────────────────────────────┐        │
+│ Prompt: medicine to remove  │        ▼
+│ Check if it exists          │  ┌───────────────────────────────┐
+└─────────────────────────────┘  │ Add new medicine to list       │
+        │                         │ Add to history (added)         │
+        ▼                         │ Prompt for schedule input      │
+┌───────────────────────────────┐│ Save to schedule map            │
+│ If not found → print msg &    ││ Print success messages          │
+│ break                         │└────────────────────────────────┘
+└───────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────┐
+│ Remove old medicine from list      │
+│ Add to history (deleted)           │
+└────────────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────┐
+│ Prompt for new medicine name       │
+│ Validate:                          │
+│ - not empty                        │
+│ - not same as old                 │
+│ - not duplicate                   │
+└────────────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────┐
+│ Add new medicine to list           │
+│ Add to history (added, updated)    │
+└────────────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────┐
+│ Prompt for schedule for new med    │
+│ Save to schedule map               │
+│ Print success messages             │
+└────────────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────┐
+│ Ask: Update another? (yes/no)      │
+│ If no → Exit update mode           │
+└────────────────────────────────────┘
+                    │
+                    ▼
+          ┌──────────────────────┐
+          │ End updateMedicines  │
+          └──────────────────────┘
+
+
+updateScheduleForExistingMedicine
+
+┌────────────────────────────────────────────┐
+│ Start updateScheduleForExistingMedicine    │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│ Prompt: Enter medicine name                │
+└────────────────────────────────────────────┘
+                    │
+        ┌───────────┴────────────┐
+        ▼                        ▼
+┌─────────────────────────┐  ┌────────────────────────────┐
+│ Medicine found?         │  │ Print: "Medicine not found"│
+│ Yes                     │  │ Return                     │
+└─────────────────────────┘  └────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────────────┐
+│ Prompt for new schedule                    │
+│ Use createScheduleFromInput()             │
+│ Update schedule in medicineSchedules Map   │
+└────────────────────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────────────┐
+│ Add update entry in medicineHistories      │
+│ Print success message                      │
+└────────────────────────────────────────────┘
+        │
+        ▼
+        ┌──────────────────────┐
+        │ End Function         │
+        └──────────────────────┘
+
+deleteMedicine
+
+┌───────────────────────────────────────┐
+│ Start deleteMedicines(Scanner sc)     │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│ Prompt: Enter medicine name to delete      │
+└────────────────────────────────────────────┘
+                    │
+        ┌───────────┴────────────┐
+        ▼                        ▼
+┌────────────────────────────┐  ┌──────────────────────────────┐
+│ Medicine exists in list?   │  │ Print "Medicine not found"   │
+│ Yes                        │  │ Return                       │
+└────────────────────────────┘  └──────────────────────────────┘
+        │
+        ▼
+┌────────────────────────────────────────────┐
+│ Remove medicine from list                  │
+│ Add deletion to medicineHistories          │
+│ Print success message                      │
+└────────────────────────────────────────────┘
+        │
+        ▼
+        ┌──────────────────────┐
+        │ End Function         │
+        └──────────────────────┘
+
+viewMedicineHistory
+
+┌──────────────────────────────────────┐
+│ Start viewMedicineHistory()          │
+└──────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│ Check if medicineHistories is empty        │
+└────────────────────────────────────────────┘
+        ┌────────────┴────────────┐
+        ▼                         ▼
+┌───────────────────────────┐ ┌────────────────────────────────┐
+│ Print: "No history found" │ │ Loop through history entries:   │
+│ Return                    │ │  - Print Added / Updated /      │
+└───────────────────────────┘ │    Deleted with timestamp       │
+                              └────────────────────────────────┘
+                                          │
+                                          ▼
+                         ┌────────────────────────────────┐
+                         │ Print all current medicines    │
+                         │ If empty, show "No medicines"  │
+                         └────────────────────────────────┘
+                                          │
+                                          ▼
+                             ┌──────────────────────┐
+                             │ End Function         │
+                             └──────────────────────┘
+
+viewMedicineSchedule
+
+┌──────────────────────────────────────────┐
+│ Start viewMedicineSchedule()             │
+└──────────────────────────────────────────┘
+                    │
+                    ▼
+  ┌────────────────────────────────────┐
+  │ Prompt: "Enter the name of the     │
+  │ medicine to view schedule:"        │
+  └────────────────────────────────────┘
+                    │
+                    ▼
+  ┌────────────────────────────────────┐
+  │ Read input from user               │
+  │ Convert to lowercase & trim input │
+  └────────────────────────────────────┘
+                    │
+                    ▼
+  ┌────────────────────────────────────┐
+  │ Look up medicineSchedules map      │
+  │ using lowercase medicine name      │
+  └────────────────────────────────────┘
+                    │
+                    ▼
+         ┌──────────┴───────────┐
+         ▼                      ▼
+  Found Schedule?           Schedule Not Found
+         │                      │
+         ▼                      ▼
+┌────────────────────┐  ┌────────────────────────────────┐
+│ Print: "Schedule for │  │ Print: "No schedule found for  │
+│ [medicineName]"      │  │ [medicineName]" (in RED)       │
+└────────────────────┘  └────────────────────────────────┘
+         │                      │
+         ▼                      ▼
+┌────────────────────┐      ┌────────────┐
+│ Print schedule obj  │      │ Return     │
+└────────────────────┘      └────────────┘
+         │
+         ▼
+   ┌────────────┐
+   │ Return     │
+   └────────────┘
+
+MedicineSchedule 
+
+[Start]
+   |
+   v
+[Create Schedule From Input]
+   |
+   |--> Ask "Enter number of doses per day"
+   |         |
+   |         v
+   |    Validate (must be > 0)
+   |
+   |--> Ask "Enter number of days"
+   |         |
+   |         v
+   |    Validate (must be > 0)
+   |
+   |--> For each day:
+   |         Ask day name (e.g., Monday)
+   |         Add to 'days' list
+   |
+   |--> For each dose:
+             |
+             v
+        Ask time in HH:mm
+             |
+             v
+        Validate format ✓
+             |
+             v
+        For each entered day:
+           |
+           v
+    Generate slot as "Day-Time"
+           |
+           v
+    Check if slot exists in global existingDayTimeSlots
+           |
+           v
+    If conflict:
+       Print "Conflict detected"
+       Adjust time +10 mins repeatedly until free
+       Show adjusted time
+           |
+           v
+    Add new slot to existingDayTimeSlots
+           |
+           v
+    Add final time to doseTimes list
+   |
+   v
+[Return new MedicineSchedule object with numberOfDoses, doseTimes, days]
+   |
+   v
+[Check & Notify Dose (Runtime)]
+   |
+   |--> Get current time (HH:mm) and day (e.g., MONDAY)
+   |
+   |--> For each scheduled day:
+              |
+              v
+         If matches today's day:
+            For each doseTime:
+               |
+               v
+          If matches current time:
+              --> Print Reminder: "It's time to take your medicine: <name> at <doseTime>"
+   |
+   v
+[End]
+
+
+
+
 ---
 ### Developer Profile
 Name: Shriya Verma
