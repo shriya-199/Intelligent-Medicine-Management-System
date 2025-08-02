@@ -101,7 +101,7 @@ public class MedicineSchedule {
         for (int i = 1; i <= numberOfDays; i++) {
             System.out.print("Enter day " + i + " (e.g., Monday): ");
             String day = scanner.nextLine().trim();
-            if( day.length() < 3 || !day.matches("(?i)^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$")) {
+            if(!day.matches("(?i)^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$")) {
                 System.out.println("Invalid day. Please enter a valid day of the week.");
                 i--;
                 continue;
